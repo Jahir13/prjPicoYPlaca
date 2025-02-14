@@ -20,7 +20,9 @@ public class PicoPlacaPredictor {
 
     public boolean canDrive(String plate, String date, String time) {
         try {
-
+            if (!plateValidator.isValidPlate(plate)) {
+                throw new IllegalArgumentException("Invalid plate format");
+            }
 
             LocalDate checkDate = LocalDate.parse(date, DATE_FORMATTER);
             LocalTime checkTime = LocalTime.parse(time, TIME_FORMATTER);
@@ -58,6 +60,8 @@ public class PicoPlacaPredictor {
 
             return !isWithinRestrictedTime;
 
+        } catch (IllegalArgumentException e) {
+            throw e;
         } catch (Exception e) {
             throw new IllegalArgumentException("Invalid input format", e);
         }
