@@ -20,4 +20,10 @@ class PlateValidatorTest {
     void testInvalidPlateFormat() {
         assertFalse(validator.isValidPlate("PBX-12"));
     }
+
+    @Test
+    void testGetLastDigit() {
+        int lastDigit = validator.getLastDigit("DXX-1234");
+        assertEquals(4, lastDigit);
+    }
 }
