@@ -1,12 +1,10 @@
-import main.ANT;
-import main.Vehicle;
+import main.*;
+
+import java.time.DayOfWeek;
 
 public class Main {
     public static void main(String[] args) {
-        Vehicle car = ANT.vehicleRegistration("PBX-1234");
-        Vehicle motorcycle = ANT.vehicleRegistration("PB-123A");
-
-        System.out.println("Car plate: " + car.getPlate());           // PBX-1234
-        System.out.println("Motorcycle plate: " + motorcycle.getPlate()); // PB-123A
+        DayRestriction mondayRestriction = new DayRestriction(DayOfWeek.MONDAY, 1, 2);
+        System.out.println("Does Monday restriction apply to 1? " + mondayRestriction.appliesTo(DayOfWeek.MONDAY, 1));
     }
 }
