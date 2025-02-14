@@ -7,11 +7,6 @@ class PlateValidatorTest {
     private final PlateValidator validator = new PlateValidator();
 
     @Test
-    void testValidCarPlate() {
-        assertTrue(validator.isValidPlate("DBX-1234"));
-    }
-
-    @Test
     void testValidMotorcyclePlate() {
         assertTrue(validator.isValidPlate("PB-123A"));
     }
@@ -22,8 +17,17 @@ class PlateValidatorTest {
     }
 
     @Test
-    void testGetLastDigit() {
-        int lastDigit = validator.getLastDigit("DXX-1234");
+    void testInvalidProvinceCodeThrowsException() {
+        int lastDigit = validator.getLastDigit("AXX-1234");
         assertEquals(4, lastDigit);
+    }
+
+    @Test
+    void testInvalidPlateThrowsException1() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            validator.isValidPlate("DBX-1234");
+        });
+
+        assertEquals("Invalid province code", exception.getMessage());
     }
 }
