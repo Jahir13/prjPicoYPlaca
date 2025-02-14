@@ -1,9 +1,12 @@
-import main.PlateValidator;
+import main.ANT;
+import main.Vehicle;
 
 public class Main {
     public static void main(String[] args) {
-        PlateValidator validator = new PlateValidator();
-        System.out.println("Is PBX-1234 valid? " + validator.isValidPlate("DBX-7891"));
-        System.out.println("Is PB-123A valid? " + validator.isValidPlate("PB-123A"));
+        Vehicle car = ANT.vehicleRegistration("PBX-1234");
+        Vehicle motorcycle = ANT.vehicleRegistration("PB-123A");
+
+        System.out.println("Car plate: " + car.getPlate());           // PBX-1234
+        System.out.println("Motorcycle plate: " + motorcycle.getPlate()); // PB-123A
     }
 }

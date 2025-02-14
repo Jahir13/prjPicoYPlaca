@@ -19,4 +19,9 @@ public class Motorcycle extends Vehicle {
         String[] parts = plate.split("-");
         return Character.getNumericValue(parts[1].charAt(2));
     }
+
+    @Override
+    public String getPlate() {
+        return plate;
+    }
 }

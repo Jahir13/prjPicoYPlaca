@@ -20,5 +20,4 @@ class PlateValidatorTest {
     void testInvalidPlateFormat() {
         assertFalse(validator.isValidPlate("PBX-12"));
     }
-
 }

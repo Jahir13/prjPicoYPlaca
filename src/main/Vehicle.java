@@ -9,4 +9,5 @@ public abstract class Vehicle {
 
     public abstract boolean isValidPlate();
     public abstract int getLastDigit();
+    public abstract String getPlate();
 }

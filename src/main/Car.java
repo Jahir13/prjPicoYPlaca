@@ -18,4 +18,9 @@ public class Car extends Vehicle {
     public int getLastDigit() {
         return Integer.parseInt(plate.substring(plate.length() - 1));
     }
+
+    @Override
+    public String getPlate() {
+        return plate;
+    }
 }
