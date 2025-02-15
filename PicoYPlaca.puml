@@ -1,0 +1,77 @@
+@startuml
+
+class PicoPlacaPredictor {
+    - plateValidator: PlateValidatorInterface
+    - restrictionConfig: RestrictionConfig
+    + canDrive(plate: String, date: String, time: String): boolean
+}
+
+interface PlateValidatorInterface {
+    + isValidPlate(plate: String): boolean
+    + getLastDigit(plate: String): int
+}
+
+class PlateValidator {
+    + isValidPlate(plate: String): boolean
+    + getLastDigit(plate: String): int
+}
+
+interface RestrictionConfig {
+    + getTimeRestrictions(): List<TimeRestriction>
+    + getDayRestrictions(): List<DayRestriction>
+}
+
+class QuitoRestrictionConfig implements RestrictionConfig {
+    + getTimeRestrictions(): List<TimeRestriction>
+    + getDayRestrictions(): List<DayRestriction>
+}
+
+abstract class Vehicle {
+    - plate: String
+    + isValidPlate(): boolean
+    + getLastDigit(): int
+}
+
+class Car {
+    + isValidPlate(): boolean
+    + getLastDigit(): int
+}
+
+class Motorcycle {
+    + isValidPlate(): boolean
+    + getLastDigit(): int
+}
+
+class ANT {
+    + vehicleRegistration(plate: String): Vehicle
+}
+
+class DayRestriction {
+    - day: DayOfWeek
+    - restrictedDigits: List<Integer>
+    + appliesTo(checkDay: DayOfWeek, lastDigit: int): boolean
+}
+
+class TimeRestriction {
+    - start: LocalTime
+    - end: LocalTime
+    + isWithinRestriction(time: LocalTime): boolean
+}
+
+class Main {
+    + main(args: String[]): void
+    - testVehicle(predictor: PicoPlacaPredictor, plate: String, date: String, time: String, testCase: String): void
+}
+
+PicoPlacaPredictor --> PlateValidatorInterface
+PicoPlacaPredictor --> RestrictionConfig
+PlateValidatorInterface <|.. PlateValidator
+PlateValidator --> ANT
+PicoPlacaPredictor --> Vehicle
+Vehicle <|-- Car
+Vehicle <|-- Motorcycle
+QuitoRestrictionConfig --> DayRestriction
+QuitoRestrictionConfig --> TimeRestriction
+Main --> PicoPlacaPredictor
+
+@enduml

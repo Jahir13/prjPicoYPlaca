@@ -5,8 +5,17 @@ import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Configuration class for Quito's vehicle restriction rules.
+ * @author Jahir Rocha
+ * @version 1.0
+ */
 public class QuitoRestrictionConfig implements RestrictionConfig {
 
+    /**
+     * Gets the time restrictions for Quito.
+     * @return a list of time restrictions
+     */
     @Override
     public List<TimeRestriction> getTimeRestrictions() {
         return Arrays.asList(
@@ -15,6 +24,10 @@ public class QuitoRestrictionConfig implements RestrictionConfig {
         );
     }
 
+    /**
+     * Gets the day restrictions for Quito.
+     * @return a list of day restrictions
+     */
     @Override
     public List<DayRestriction> getDayRestrictions() {
         return Arrays.asList(

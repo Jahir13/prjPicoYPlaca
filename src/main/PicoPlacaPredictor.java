@@ -6,6 +6,12 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+/**
+ * Predicts whether a vehicle can drive based on Pico y Placa restrictions.
+ *
+ * @author Jahir Rocha
+ * @version 1.0
+ */
 public class PicoPlacaPredictor {
     private final PlateValidatorInterface plateValidator;
     private final RestrictionConfig restrictionConfig;
@@ -13,11 +19,24 @@ public class PicoPlacaPredictor {
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
+    /**
+     * Constructs a PicoPlacaPredictor with a plate validator and restriction configuration.
+     * @param plateValidator the plate validator to use
+     * @param restrictionConfig the restriction configuration to use
+     */
     public PicoPlacaPredictor(PlateValidatorInterface plateValidator, RestrictionConfig restrictionConfig) {
         this.plateValidator = plateValidator;
         this.restrictionConfig = restrictionConfig;
     }
 
+    /**
+     * Determines if a vehicle can drive on a specific date and time.
+     * @param plate the license plate of the vehicle
+     * @param date the date to check
+     * @param time the time to check
+     * @return true if the vehicle can drive, false otherwise
+     * @throws IllegalArgumentException if the plate format or input format is invalid
+     */
     public boolean canDrive(String plate, String date, String time) {
         try {
             if (!plateValidator.isValidPlate(plate)) {
